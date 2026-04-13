@@ -1,4 +1,6 @@
 ---
+import Spectrogram from './Spectrogram.astro';
+
 type Side = 'claude' | 'gemini' | 'both';
 type Round = {
   num: number;
@@ -116,20 +118,28 @@ const rounds: Round[] = [
     <p class="battle-section-sub">
       Same 48 bars. Same humanize() spine. Six rounds of difference rendered visible.
     </p>
-    <figure class="battle-spec battle-spec--r1">
-      <figcaption>
+    <div class="battle-spec battle-spec--r1">
+      <div class="battle-spec-label-row">
         <span class="battle-spec-badge">R1</span>
         <span class="battle-spec-label">ORIGINAL · CLAUDE ONLY</span>
-      </figcaption>
-      <img src="/media/spectrograms/hard-problem.png" alt="Hard Problem R1 spectrogram" loading="lazy" />
-    </figure>
-    <figure class="battle-spec battle-spec--r7">
-      <figcaption>
+      </div>
+      <Spectrogram
+        src="/media/spectrograms/hard-problem.png"
+        alt="Hard Problem R1 spectrogram"
+        trackTitle="Hard Problem R1"
+      />
+    </div>
+    <div class="battle-spec battle-spec--r7">
+      <div class="battle-spec-label-row">
         <span class="battle-spec-badge">R7</span>
         <span class="battle-spec-label">BATTLE-FORGED · CLAUDE × GEMINI × EVAN</span>
-      </figcaption>
-      <img src="/media/spectrograms/hard-problem-r7.png" alt="Hard Problem R7 spectrogram" loading="lazy" />
-    </figure>
+      </div>
+      <Spectrogram
+        src="/media/spectrograms/hard-problem-r7.png"
+        alt="Hard Problem R7 spectrogram"
+        trackTitle="Hard Problem R7"
+      />
+    </div>
     <p class="battle-spec-note">
       Look at the upper frequencies — that's where the choir, the ghost melodies, and the sliding mid-drone live. R7 is
       louder, denser, and haunted by itself.
@@ -390,13 +400,13 @@ const rounds: Round[] = [
     margin-bottom: 5rem;
   }
   .battle-spec {
-    margin: 1.25rem 0;
+    margin: 1.5rem 0 2rem;
   }
-  .battle-spec figcaption {
+  .battle-spec-label-row {
     display: flex;
     align-items: center;
     gap: 0.9rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
   }
   .battle-spec-badge {
     display: inline-grid;
@@ -426,15 +436,13 @@ const rounds: Round[] = [
     color: rgba(228, 224, 212, 0.55);
     text-transform: uppercase;
   }
-  .battle-spec img {
-    width: 100%;
-    border-radius: 4px;
-    border: 1px solid rgba(107, 63, 160, 0.25);
-    display: block;
+  .battle-spec :global(.spec-thumb) {
+    margin-top: 0;
+    max-width: 100%;
   }
-  .battle-spec--r7 img {
+  .battle-spec--r7 :global(.spec-thumb-btn) {
     border-color: rgba(199, 75, 143, 0.4);
-    box-shadow: 0 0 30px -8px rgba(199, 75, 143, 0.35);
+    box-shadow: 0 0 30px -12px rgba(199, 75, 143, 0.35);
   }
   .battle-spec-note {
     font-family: var(--serif);
